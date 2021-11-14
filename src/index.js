@@ -1,5 +1,5 @@
-import oneModule from './modules/one'
-import twoModule from './modules/two'
+import timer from './modules/timer'
 
-oneModule()
-twoModule()
+
+timer('18 november 2021')
+

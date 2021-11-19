@@ -3,12 +3,21 @@ const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn')
   const closeBtn = modal.querySelector('.popup-close')
 
+
+  
 const addOpacity = () => {
-  for (let styleOpacity = 0; ; i++) {
-    modal.style.opacity = styleOpacity
-    if (styleOpacity == 10) 
-    clearInterval(timeInterval)
-  } 
+
+  let elementStyle = 0
+  let timeInterval
+
+  const blurElement = () => {
+    if (elementStyle < 1) {
+      elementStyle += 0.05
+      modal.style.opacity = elementStyle
+    } else clearInterval(timeInterval)
+  }
+
+  timeInterval = setInterval(blurElement, 50)
 }
 
 
@@ -17,10 +26,11 @@ const addOpacity = () => {
    btn.addEventListener('click', () => {
      modal.style.opacity = "0"
      modal.style.display = 'block'
+
      if (document.documentElement.offsetWidth >= 738) {
        addOpacity()
      } else {
-       modal.style.opacity = "10"
+       modal.style.opacity = "1"
      }
   })
 })

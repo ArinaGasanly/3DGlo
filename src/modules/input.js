@@ -12,19 +12,19 @@ calculator.forEach(value => {
 
   inputName.forEach(value => {
     value.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/[a-яА-Я]\s/gi, '')
+      e.target.value = e.target.value.replace(/[^[а-яё\s-]/gi, '')
     })
   })
 
   inputEmail.forEach(value => {
     value.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/[a-zA-z]\S/gi, '')
+      e.target.value = e.target.value.replace(/[^[a-zA-Z_@.!~*' \-]*/g, '')
     })
   })
 
   inputPhone.forEach(value => {
     value.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/^\d$/g, '')
+      e.target.value = e.target.value.replace(/[^[0-9()-]*/g, '')
     })
   })
 

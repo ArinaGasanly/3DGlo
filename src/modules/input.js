@@ -1,3 +1,4 @@
+
 const inputCheck = () => {
   const calculator = document.querySelectorAll('.calc-block')
   const inputName = document.querySelectorAll('.form-name')

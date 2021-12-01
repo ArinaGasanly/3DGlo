@@ -1,3 +1,5 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modal = document.querySelector('.popup')
   const buttons = document.querySelectorAll('.popup-btn')
@@ -15,7 +17,7 @@ const modal = () => {
             return timeFraction;
           },
           draw(progress) {
-            elem.style.opacity = progress
+            elem.style.opacity = progress * 1
           }
   })
       } else {

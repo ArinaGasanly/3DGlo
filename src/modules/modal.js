@@ -17,7 +17,7 @@ const modal = () => {
             return timeFraction;
           },
           draw(progress) {
-            elem.style.opacity = progress * 1
+            modal.style.opacity = progress * 1
           }
   })
       } else {
@@ -34,3 +34,5 @@ const modal = () => {
 }
 
 export default modal
+
+

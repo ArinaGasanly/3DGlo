@@ -1,20 +1,34 @@
 const sendForm = ({formId, someElem = []}) => {
   const form = document.getElementById(formId)
-  const ststusBlock = document.createElement('div')
+  const statusBlock = document.createElement('div')
   const loadText = 'Загрузка...'
   const errorText = 'Ошибка...'
   const successText = 'Спасибо! Наш менеджер с вами свяжется!'
 
   const validate = (list) => {
-    let success = true
+    let userPhone = true
+    let userName = true
+    let userMessage = true
+    let nonsuccess = false
 
-    list.forEach(input => {
-      if(!input.classList.contains('success'))
-      success = false
-    })
+    list.forEach(value => {
+      if (value.name === 'user_phone') {
+      let check = /[\d\+]/gi
+        userPhone = check.test(value.value)
+      
+    } else if (value.name === 'user_name') {
+      let check = /[а-яё]/gi
+        userName = check.test(value.value)
 
-    return success
-  }
+    } else if (value.name === 'user_message') {
+      let check = /[а-я\d\,.]/gi
+        userMessage = check.test(value.value)
+    }
+  })
+
+    return nonsuccess 
+}
+
 
 
   const sendData = (data) => {
@@ -24,7 +38,7 @@ const sendForm = ({formId, someElem = []}) => {
     headers : {
       "Content-Type": "application/json"
     }
-  }).then(res => res.json())
+  }).then(response => response.json())
 }
 
 
@@ -35,23 +49,23 @@ const sendForm = ({formId, someElem = []}) => {
     const formBody = {}
 
     statusBlock.textContent = loadText
-    form.append(ststusBlock)
+    form.append(statusBlock)
 
-    formData.forEach((val, key) => {
-      formBody[key] = val
+    formData.forEach((value, key) => {
+      formBody[key] = value
     })
 
-    someElem.forEach(elem => {
-      const element = document.getElementById(elem.id)
+    someElem.forEach(value => {
+      const element = document.getElementById(value.id)
 
-      if (elem.type === 'block') {
-        formBody[elem.id] = element.textContent
-      } else if (elem.type === 'input') {
-        formBody[elem.id] = element.value
+      if (value.type === 'block') {
+        formBody[value.id] = element.textContent
+      } else if (value.type === 'input') {
+        formBody[value.id] = element.value
       }
     })
 
-    console.log('submit')
+   
 
     if (validate(formElements)) {
       sendData(formBody).
@@ -60,20 +74,16 @@ const sendForm = ({formId, someElem = []}) => {
 
           formElements.forEach(input => {
             input.value = ''
-          }
+          })
+    }).catch(error => {
+      statusBlock.textContent = errorText
+      console.log(error)
     })
-        .catch(error => {
-          statusBlock.textContent = errorText
-        })
-    } else {
-      alert('Данные не валидны!!!')
-    }
-
+    } else alert('Данные не валидны!')
   }
+  try {
 
-}
-try{
-  if(!form) {
+     if(!form) {
     throw new Error('Верните фориу на место, пожалуйста')
   }
     form.addEventListener('submit', (event) => {
@@ -89,4 +99,3 @@ try{
 }
 
 export default sendForm
-

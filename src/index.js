@@ -7,7 +7,7 @@ import slider from './modules/slider'
 import calc from './modules/calc'
 import sendForm from './modules/sendForm'
 
-timer('22 november 2021')
+timer('7 december 2021')
 menu()
 modal()
 inputCheck()
@@ -16,11 +16,10 @@ slider()
 calc()
 sendForm({
   formId: 'form1',
-  someElem: [
+  someElement: [
     {
       type: 'block',
       id: 'total'
-
     }
-  ] 
+  ]
 })

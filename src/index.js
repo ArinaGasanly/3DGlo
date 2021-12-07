@@ -7,7 +7,7 @@ import slider from './modules/slider'
 import calc from './modules/calc'
 import sendForm from './modules/sendForm'
 
-timer('7 december 2021')
+timer('8 december 2021')
 menu()
 modal()
 inputCheck()
@@ -23,3 +23,14 @@ sendForm({
     }
   ]
 })
+sendForm({
+  formId: 'form3'
+});
+sendForm({
+  formId: 'form2',
+  someElement: [
+    {
+      id: 'form2-message'
+    }
+  ]
+});

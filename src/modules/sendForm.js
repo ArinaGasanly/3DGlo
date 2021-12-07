@@ -9,24 +9,24 @@ const sendForm = ({formId, someElem = []}) => {
     let userPhone = true
     let userName = true
     let userMessage = true
-    let nonsuccess = false
+    
 
     list.forEach(value => {
       if (value.name === 'user_phone') {
-      let check = /[\d\+]/gi
+        let check = /[\d\+]/gi
         userPhone = check.test(value.value)
       
     } else if (value.name === 'user_name') {
-      let check = /[а-яё]/gi
+        let check = /[а-яё\s]/gi
         userName = check.test(value.value)
 
     } else if (value.name === 'user_message') {
-      let check = /[а-я\d\,.]/gi
+        let check = /[а-я\d\s!?,.;:]/gi
         userMessage = check.test(value.value)
     }
   })
-
-    return nonsuccess 
+  
+    return userPhone && userName && userMessage
 }
 
 
